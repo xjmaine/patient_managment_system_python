@@ -5,7 +5,7 @@ from misc.constants import ReusableString
 
 class DateValidator:
     # @staticmethod
-    def validate_date_format(date_str):
+    def validate_date_format(date_str: str):
         if not re.match(ReusableString.DATE_REGEX_PATTERN_MSG, date_str):
             raise ValueError(ReusableString.ERROR_INVALID_DATE_MSG)
         

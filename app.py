@@ -7,3 +7,6 @@ def run_program():
     validator = DateValidator()
     main = render_view(patient_mgr, validator)
     main.run_program()
+
+if __name__ == '__main__':
+    run_program()

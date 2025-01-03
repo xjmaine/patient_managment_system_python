@@ -10,7 +10,7 @@ class PatientManager:
         return patient.id
 
     def get_all_patients(self):
-        return [patient.to_dict() for patient in self.patients]
+        return [patient.patient_record_dict() for patient in self.patients]
 
     def get_patient_by_id(self, patient_id):
         for patient in self.patients:

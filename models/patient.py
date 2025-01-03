@@ -13,7 +13,7 @@ class Patient:
         
     
     def calculate_age(self):
-        birth_date = datetime.strptime(self.birth_date, ReusableString.DATE_FORMAT_MSG)
+        birth_date = datetime.strptime(self.date_of_birth, ReusableString.DATE_FORMAT_MSG)
         today = datetime.now()
         age = today.year - birth_date.year 
         if (today.month < birth_date.month or (today.month == birth_date.month and today.day < birth_date.day)):
@@ -26,7 +26,7 @@ class Patient:
             ReusableString.FIELD_ID_MSG: object.id,
             ReusableString.FIELD_FIRST_NAME_MSG: object.first_name,
             ReusableString.FIELD_LAST_NAME_MSG: object.last_name,
-            ReusableString.FIELD_DATE_OF_BIRTH_MSG: object.date_of_birth,
+            ReusableString.FIELD_DOB_MSG: object.date_of_birth,
             ReusableString.FIELD_HOMETOWN_MSG: object.hometown,
             ReusableString.FIELD_HOUSE_NUMBER_MSG: object.house_number,
             ReusableString.FIELD_AGE_MSG: object.age

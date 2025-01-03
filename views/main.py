@@ -1,5 +1,6 @@
 from misc.constants import ReusableString
 from models.patient import Patient
+from misc.validator import DateValidator
 
 class render_view(object):
     def __init__(object, patient_mgr, validator):
@@ -23,7 +24,8 @@ class render_view(object):
             while True:
                 date_of_birth = input(ReusableString.PROMPT_DOB_MSG)
                 try:
-                    self.validator.validate_date_format(date_of_birth)
+                    # self.validator.validate_date_format(date_of_birth)
+                    DateValidator.validate_date_format(date_of_birth)
                     break
                 except ValueError as e:
                     print(f"Error: {e}")
@@ -44,11 +46,11 @@ class render_view(object):
             if choice == '1':
                 patient = self.get_patient_input()
                 if patient:
-                    patient_id = self.patient_manager.add_patient(patient)
+                    patient_id = self.patient_mgr.add_patient(patient)
                     print(ReusableString.SUCCESS_PATIENT_ADDED_MSG.format(patient_id))
             
             elif choice == '2':
-                patients = self.patient_manager.get_all_patients()
+                patients = self.patient_mgr.get_all_patients()
                 if patients:
                     for patient in patients:
                         print("\n".join(f"{k}: {v}" for k, v in patient.items()))
@@ -58,15 +60,15 @@ class render_view(object):
             
             elif choice == '3':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_MSG))
-                patient = self.patient_manager.get_patient_by_id(patient_id)
+                patient = self.patient_mgr.get_patient_by_id(patient_id)
                 if patient:
-                    print("\n".join(f"{k}: {v}" for k, v in patient.to_dict().items()))
+                    print("\n".join(f"{k}: {v}" for k, v in patient.patient_record_dict().items()))
                 else:
                     print(ReusableString.ERROR_PATIENT_NOT_FOUND_MSG)
             
             elif choice == '4':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_UPDATE_MSG))
-                patient = self.patient_manager.get_patient_by_id(patient_id)
+                patient = self.patient_mgr.get_patient_by_id(patient_id)
                 if patient:
                     print(ReusableString.PROMPT_NEW_VALUE_MSG)
                     updates = {}
@@ -85,7 +87,7 @@ class render_view(object):
                             else:
                                 updates[field] = value
                     
-                    if self.patient_manager.update_patient(patient_id, **updates):
+                    if self.patient_mgr.update_patient(patient_id, **updates):
                         print(ReusableString.SUCCESS_PATIENT_UPDATED_MSG)
                     else:
                         print(ReusableString.ERROR_UPDATE_FAILED_MSG)
@@ -95,7 +97,7 @@ class render_view(object):
             
             elif choice == '5':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_DELETE_MSG))
-                if self.patient_manager.delete_patient(patient_id):
+                if self.patient_mgr.delete_patient(patient_id):
                     print(ReusableString.SUCCESS_PATIENT_DELETED_MSG)
                 else:
                     print(ReusableString.ERROR_PATIENT_NOT_FOUND_MSG)

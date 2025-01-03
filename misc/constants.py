@@ -2,8 +2,8 @@ class ReusableString:
     # menu items
     MENU_TITLE_MSG = "\n Patient Management System"
     MENU_ADD_MSG = "1. Add New Patient"
-    MENU_GET_ALL_MSG = "1. Get All Patient"
-    MENU_SEARCH_MSG = "1. Search Patient by ID"
+    MENU_GET_ALL_MSG = "2. Get All Patient"
+    MENU_SEARCH_MSG = "3. Search Patient by ID"
     MENU_UPDATE_MSG = "4. Update Patient by ID"
     MENU_DELETE_MSG = "5. Delete Patient by ID"
     MENU_EXIT_MSG = "6. Exit"
@@ -22,7 +22,7 @@ class ReusableString:
     PROMPT_NEW_FIELD_MSG = "New {}: "
     
     # Success messages
-    SUCCESS_PATIENT_ADDED_MSG = "Patient added successfully with ID: {}"
+    SUCCESS_PATIENT_ADDED_MSG = "======>Patient added successfully with ID: {} <================================"
     SUCCESS_PATIENT_UPDATED_MSG = "Patient updated successfully."
     SUCCESS_PATIENT_DELETED_MSG = "Patient deleted successfully."
     SUCCESS_EXIT_MSG = "Thank you for using the Patient Management System!"

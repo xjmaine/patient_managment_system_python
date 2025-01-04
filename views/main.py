@@ -77,9 +77,9 @@ class render_view(object):
                                 ReusableString.FIELD_HOUSE_NUMBER_MSG]:
                         value = input(ReusableString.PROMPT_NEW_FIELD_MSG.format(field))
                         if value:
-                            if field == ReusableString.FIELD_DOB:
+                            if field == ReusableString.FIELD_DOB_MSG:
                                 try:
-                                    self.validator.validate_date_format(value)
+                                    DateValidator.validate_date_format(value)
                                     updates[field] = value
                                 except ValueError as e:
                                     print(f"Invalid date format: {e}")

@@ -38,7 +38,7 @@ class PatientManager:
             if hasattr(patient, key):
                 setattr(patient, key, value)
                 if key == 'date_of_birth':
-                    patient.age = patient._calculate_age()
+                    patient.age = patient.calculate_age()
         return True
 
     def delete_patient(self, patient_id):

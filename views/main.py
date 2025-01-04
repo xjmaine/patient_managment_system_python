@@ -39,16 +39,25 @@ class render_view(object):
             return None
         
     def run_program(self):
+        """
+        This function runs the main program loop, displaying a menu and handling user choices.
+
+        Parameters:
+        self (object): The instance of the class.
+
+        Returns:
+        None
+        """
         while True:
             self.display_menu()
             choice = input(ReusableString.MENU_CHOICE_MSG)
-            
+
             if choice == '1':
                 patient = self.get_patient_input()
                 if patient:
                     patient_id = self.patient_mgr.add_patient(patient)
                     print(ReusableString.SUCCESS_PATIENT_ADDED_MSG.format(patient_id))
-            
+
             elif choice == '2':
                 patients = self.patient_mgr.get_all_patients()
                 if patients:
@@ -57,7 +66,7 @@ class render_view(object):
                         print("-" * 30)
                 else:
                     print(ReusableString.ERROR_NO_PATIENTS_MSG)
-            
+
             elif choice == '3':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_MSG))
                 patient = self.patient_mgr.get_patient_by_id(patient_id)
@@ -65,7 +74,7 @@ class render_view(object):
                     print("\n".join(f"{k}: {v}" for k, v in patient.patient_record_dict().items()))
                 else:
                     print(ReusableString.ERROR_PATIENT_NOT_FOUND_MSG)
-            
+
             elif choice == '4':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_UPDATE_MSG))
                 patient = self.patient_mgr.get_patient_by_id(patient_id)
@@ -73,8 +82,8 @@ class render_view(object):
                     print(ReusableString.PROMPT_NEW_VALUE_MSG)
                     updates = {}
                     for field in [ReusableString.FIELD_FIRST_NAME_MSG, ReusableString.FIELD_LAST_NAME_MSG, 
-                                ReusableString.FIELD_DOB_MSG, ReusableString.FIELD_HOMETOWN_MSG, 
-                                ReusableString.FIELD_HOUSE_NUMBER_MSG]:
+                                    ReusableString.FIELD_DOB_MSG, ReusableString.FIELD_HOMETOWN_MSG, 
+                                    ReusableString.FIELD_HOUSE_NUMBER_MSG]:
                         value = input(ReusableString.PROMPT_NEW_FIELD_MSG.format(field))
                         if value:
                             if field == ReusableString.FIELD_DOB_MSG:
@@ -86,25 +95,25 @@ class render_view(object):
                                     continue
                             else:
                                 updates[field] = value
-                    
+
                     if self.patient_mgr.update_patient(patient_id, **updates):
                         print(ReusableString.SUCCESS_PATIENT_UPDATED_MSG)
                     else:
                         print(ReusableString.ERROR_UPDATE_FAILED_MSG)
                         print(ReusableString.ERROR_UPDATE_FAILED_MSG)
                 else:
-                    print(ReusableString.ERROR_PATIENT_NOT_FOUND)
-            
+                    print(ReusableString.ERROR_PATIENT_NOT_FOUND_MSG)
+
             elif choice == '5':
                 patient_id = int(input(ReusableString.PROMPT_PATIENT_ID_DELETE_MSG))
                 if self.patient_mgr.delete_patient(patient_id):
                     print(ReusableString.SUCCESS_PATIENT_DELETED_MSG)
                 else:
                     print(ReusableString.ERROR_PATIENT_NOT_FOUND_MSG)
-            
+
             elif choice == '6':
                 print(ReusableString.SUCCESS_EXIT_MSG)
                 break
-            
+
             else:
                 print(ReusableString.ERROR_INVALID_CHOICE_MSG)

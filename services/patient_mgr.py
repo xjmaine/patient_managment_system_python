@@ -1,7 +1,7 @@
 class PatientManager:
     def __init__(self):
-        self.patients = []
-        self.next_id = 1
+            self.patients = []
+            self.next_id = 1
 
     def add_patient(self, patient):
         patient.id = self.next_id
@@ -9,8 +9,13 @@ class PatientManager:
         self.next_id += 1
         return patient.id
 
+
     def get_all_patients(self):
-        return [patient.patient_record_dict() for patient in self.patients]
+        return [
+            patient.patient_record_dict() for patient in self.patients
+            ]
+
+
 
     def get_patient_by_id(self, patient_id):
         for patient in self.patients:
@@ -19,17 +24,6 @@ class PatientManager:
         return None
 
     def update_patient(self, patient_id, **kwargs):
-        """_summary_
-
-        Args:
-            patient_id (_type_): _description_
-
-        Returns:
-            _type_: _description_
-        
-        Arguments types:
-            **kwargs used to handle named parameters not defined
-        """
         patient = self.get_patient_by_id(patient_id)
         if not patient:
             return False

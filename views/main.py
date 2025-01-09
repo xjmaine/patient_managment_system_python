@@ -3,12 +3,32 @@ from models.patient import Patient
 from misc.validator import DateValidator
 
 class render_view(object):
-    def __init__(object, patient_mgr, validator):
+    def __init__(self, patient_mgr, validator):
+        """
+        Initialize the render_view class with patient_mgr and validator instances.
+
+        Parameters:
+        patient_mgr (PatientManager): An instance of the PatientManager class responsible for managing patient data.
+        validator (Validator): An instance of the Validator class used for validating input data.
+
+        Returns:
+        None
+        """
         object.patient_mgr = patient_mgr
         object.validator = validator
+
         
     
     def display_menu(args):
+        """
+        Display the main menu options to the user.
+
+        Args:
+        args (list): A list of arguments passed to the function. In this case, it is not used.
+
+        Returns:
+        None. The function only prints the menu options to the console.
+        """
         print(ReusableString.MENU_TITLE_MSG)
         print(ReusableString.MENU_ADD_MSG)
         print(ReusableString.MENU_GET_ALL_MSG)
@@ -16,6 +36,7 @@ class render_view(object):
         print(ReusableString.MENU_UPDATE_MSG)
         print(ReusableString.MENU_DELETE_MSG)
         print(ReusableString.MENU_EXIT_MSG)
+
     
     def get_patient_input(self):
         try:
